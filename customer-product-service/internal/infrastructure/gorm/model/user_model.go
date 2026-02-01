@@ -12,6 +12,7 @@ type UserModel struct {
 	ID				uint64			`gorm:"primaryKey;unique;not null;"`
 	PublicId		string			`gorm:"type:varchar(255);not null;"`
 	Nik				string			`gorm:"type:varchar(100);not null;"`
+	Password		string			`gorm:"type:varchar(255);not null;"`
 	FullName		string			`gorm:"type:varchar(255);not null;"`
 	LegalName		string			`gorm:"type:varchar(255);not null;"`
 	TempatLahir		string			`gorm:"type:varchar(50);not null;"`
@@ -33,7 +34,9 @@ func (UserModel) TableName() string {
 func (m *UserModel) FromEntity(u *entity.User) *UserModel {
 	return &UserModel{
 		ID: u.ID,
-		Nik: u.Nik,				
+		PublicId: u.PublicId,
+		Nik: u.Nik,
+		Password: u.Password,				
 		FullName: u.FullName,		
 		LegalName: u.LegalName,		
 		TempatLahir: u.TempatLahir,		

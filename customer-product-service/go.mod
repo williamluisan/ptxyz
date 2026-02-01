@@ -5,6 +5,7 @@ go 1.25.5
 require (
 	github.com/gin-gonic/gin v1.11.0
 	github.com/go-playground/validator/v10 v10.27.0
+	github.com/oklog/ulid/v2 v2.1.1
 	github.com/shopspring/decimal v1.4.0
 	github.com/spf13/viper v1.21.0
 	golang.org/x/crypto v0.40.0

@@ -2,12 +2,14 @@ package user
 
 import (
 	"net/http"
+	"time"
 
 	entity "ptxyz/customer-product-service/internal/domain/entity/user"
 	"ptxyz/customer-product-service/internal/transport/http/gin/handler"
 	service "ptxyz/customer-product-service/internal/usecase/user"
 
 	"github.com/gin-gonic/gin"
+	"github.com/shopspring/decimal"
 )
 
 type UserHandler struct {
@@ -25,7 +27,7 @@ func (h *UserHandler) GetByNik(c *gin.Context) {
 func (h *UserHandler) Create(c *gin.Context) {
 	var req CreateUserRequest
 
-	if err := c.ShouldBindJSON(&req); err != nil {
+	if err := c.ShouldBind(&req); err != nil {
 		c.JSON(http.StatusBadRequest, handler.APIResponse{
 				Success: false,
 				Error: &handler.APIError{
@@ -38,13 +40,31 @@ func (h *UserHandler) Create(c *gin.Context) {
 		return
 	}
 	
+	tanggalLahir, err := time.Parse("2006-01-02", req.TanggalLahir)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, handler.APIResponse{
+			Success: false,
+			Message: "Invalid tanggalLahir format, use YYYY-MM-DD",
+		})
+		return
+	}
+
+	gaji, err := decimal.NewFromString(req.Gaji)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, handler.APIResponse{
+			Success: false,
+			Message: "Invalid gaji format",
+		})
+		return
+	}
+
 	input := &entity.UserInput{
 		Nik: req.Nik,
 		FullName: req.FullName,
 		LegalName: req.LegalName,
 		TempatLahir: req.TempatLahir,
-		TanggalLahir: req.TanggalLahir,
-		Gaji: req.Gaji,
+		TanggalLahir: tanggalLahir,
+		Gaji: gaji,
 		FotoKtp: req.FotoKtp.Filename, 
 		FotoSelfie: req.FotoSelfie.Filename,
 	}

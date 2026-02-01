@@ -2,18 +2,15 @@ package user
 
 import (
 	"mime/multipart"
-	"time"
-
-	"github.com/shopspring/decimal"
 )
 
 type CreateUserRequest struct {
-	Nik				string
-	FullName		string
-	LegalName		string
-	TempatLahir		string
-	TanggalLahir	time.Time
-	Gaji			decimal.Decimal
-	FotoKtp			*multipart.FileHeader
-	FotoSelfie		*multipart.FileHeader
+	Nik           string                `form:"nik" binding:"required,min=8,max=20"`
+	FullName      string                `form:"fullName" binding:"required"`
+	LegalName     string                `form:"legalName" binding:"required"`
+	TempatLahir   string                `form:"tempatLahir" binding:"required"`
+	TanggalLahir  string                `form:"tanggalLahir" binding:"required"` // YYYY-MM-DD
+	Gaji          string                `form:"gaji" binding:"required"`
+	FotoKtp       *multipart.FileHeader `form:"fotoKtp" binding:"required"`
+	FotoSelfie    *multipart.FileHeader `form:"fotoSelfie" binding:"required"`
 }
