@@ -26,6 +26,7 @@ type User struct {
 // DTO (Data Transfer Object)
 type UserInput struct {
 	Nik				string
+	Password		string
 	FullName		string
 	LegalName		string
 	TempatLahir		string
