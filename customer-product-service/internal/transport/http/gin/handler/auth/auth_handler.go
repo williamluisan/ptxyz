@@ -41,13 +41,17 @@ func (h *AuthHandler) VerifyCredential(c *gin.Context) {
 	)
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, handler.APIResponse{
-				Success: false,
-				Message: err.Error(),
+			Success: false,
+			Message: err.Error(),
 		})
 		return
 	}
 
-	c.JSON(http.StatusOK, VerifyResponse{
-		UserPublicId: result.UserPublicId,
+	c.JSON(http.StatusOK, handler.APIResponse{
+		Success: true,
+		Message: "",
+		Data: VerifyResponse{
+			UserPublicId: result.UserPublicId,
+		},
 	})
 }
