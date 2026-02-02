@@ -20,8 +20,8 @@ func New(db *gorm.DB) repository.UserRepository {
 
 var mUserModel gormModel.UserModel
 
-func (r *userRepository) GetByNik(ctx context.Context, email string) (*entity.User, error) {
-	user, err := gorm.G[gormModel.UserModel](r.db).Where("nik = ?", email).First(ctx); 
+func (r *userRepository) GetByNik(ctx context.Context, nik string) (*entity.User, error) {
+	user, err := gorm.G[gormModel.UserModel](r.db).Where("nik = ?", nik).First(ctx);
 	if err != nil {
 		return nil, err
 	}

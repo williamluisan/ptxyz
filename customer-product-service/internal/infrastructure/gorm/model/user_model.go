@@ -52,7 +52,9 @@ func (m *UserModel) FromEntity(u *entity.User) *UserModel {
 func (m *UserModel) ToEntity() *entity.User {
 	return &entity.User{
 		ID: m.ID,
-		Nik: m.Nik,				
+		PublicId: m.PublicId,
+		Nik: m.Nik,		
+		Password: m.Password,				
 		FullName: m.FullName,		
 		LegalName: m.LegalName,		
 		TempatLahir: m.TempatLahir,		

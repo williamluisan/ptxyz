@@ -91,6 +91,7 @@ func (h *UserHandler) Create(c *gin.Context) {
 
 	input := &entity.UserInput{
 		Nik: req.Nik,
+		Password: req.Password,
 		FullName: req.FullName,
 		LegalName: req.LegalName,
 		TempatLahir: req.TempatLahir,

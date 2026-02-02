@@ -64,7 +64,6 @@ func (s *userServiceImpl) Create(ctx context.Context, input *entity.UserInput) e
 		FotoSelfie: input.FotoSelfie,
 	}
 	newUser := entity.NewUser(data)
-	fmt.Println(newUser)
 
 	if err := s.repo.Create(ctx, newUser); err != nil {
 		return err

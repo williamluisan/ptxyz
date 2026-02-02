@@ -43,8 +43,8 @@ func main() {
 	userService := userUsecase.New(dbUserRepo)
 
 	/* transport handler */
-	userHandler := userHandler.New(userService)
 	authHandler := authHandler.New(authService)
+	userHandler := userHandler.New(userService)
 
 	/* transport dependencies */
 	deps := &transHttpGin.Dependencies{

@@ -26,17 +26,16 @@ func New(userRepo userRepsitory.UserRepository) AuthService {
 }
 
 func (s *authServiceImpl) VerifyCredential(ctx context.Context, input entity.VerifyInput) (*entity.VerifyOutput, error) {
-
 	user, err := s.userRepo.GetByNik(ctx, input.Nik)
 	if err != nil {
-		return nil, errors.New("salah email or password")
+		return nil, errors.New("salah email atau password")
 	}
 
 	if err := bcrypt.CompareHashAndPassword(
 		[]byte(user.Password),
 		[]byte(input.Password),
 	); err != nil {
-		return nil, errors.New("salah email or password")
+		return nil, errors.New("salah email atau password")
 	}
 
 	return &entity.VerifyOutput{

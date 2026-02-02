@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	entity "ptxyz/customer-product-service/internal/domain/entity/auth"
+	"ptxyz/customer-product-service/internal/transport/http/gin/handler"
 	service "ptxyz/customer-product-service/internal/usecase/auth"
 )
 
@@ -21,9 +22,14 @@ func (h *AuthHandler) VerifyCredential(c *gin.Context) {
 	var req VerifyRequest
 
 	if err := c.ShouldBindJSON(&req); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"message": "invalid request",
-		})
+		c.JSON(http.StatusBadRequest, handler.APIResponse{
+			Success: false,
+			Error: &handler.APIError{
+				Code: "validation_error",
+				Message: "Validation error",
+				Details: handler.ParseValidationError(err),
+			},
+		},)
 		return
 	}
 
@@ -34,8 +40,9 @@ func (h *AuthHandler) VerifyCredential(c *gin.Context) {
 		},
 	)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{
-			"message": err.Error(),
+		c.JSON(http.StatusUnauthorized, handler.APIResponse{
+				Success: false,
+				Message: err.Error(),
 		})
 		return
 	}
