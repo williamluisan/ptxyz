@@ -9,6 +9,9 @@ import (
 func NewRouter(deps *Dependencies) *gin.Engine{
 	r := gin.Default()
 
+	// middleware (global)
+	r.Use(EmptyBodyRequest())
+
 	api := r.Group("/api")
 
 	routes.RegisterRegisterRoutes(api, deps.RegisterHandler)
