@@ -42,7 +42,7 @@ func (s *userServiceImpl) Create(ctx context.Context, input *entity.UserInput) e
 	// check duplicate email
 	existingUser, _ := s.repo.GetByNik(ctx, input.Nik)
 	if (existingUser != nil) {
-		return errors.New("the nik is already in use")
+		return errors.New("nik sudah diguanakan")
 	}
 
 	// hash password
@@ -64,7 +64,6 @@ func (s *userServiceImpl) Create(ctx context.Context, input *entity.UserInput) e
 		FotoSelfie: input.FotoSelfie,
 	}
 	newUser := entity.NewUser(data)
-	fmt.Println(newUser)
 
 	if err := s.repo.Create(ctx, newUser); err != nil {
 		return err

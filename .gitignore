@@ -1,1 +1,3 @@
 .env
+customer-product-service/storage/uploads/**
+!customer-product-service/storage/uploads/**/.gitkeep

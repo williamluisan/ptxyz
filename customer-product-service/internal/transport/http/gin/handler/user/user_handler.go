@@ -24,7 +24,7 @@ func New(userService service.UserService) *UserHandler {
 }
 
 func (h *UserHandler) GetByNik(c *gin.Context) {
-	c.JSON(http.StatusOK, "user@gmail.com")
+	c.JSON(http.StatusOK, "7171")
 }
 
 func (h *UserHandler) Create(c *gin.Context) {
@@ -53,7 +53,7 @@ func (h *UserHandler) Create(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadGateway, handler.APIResponse{
 			Success: false,
-			Message: "Failed to upload KTP file.",
+			Message: "Gagal upload foto KTP.",
 		})
 		return
 	}
@@ -63,7 +63,7 @@ func (h *UserHandler) Create(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadGateway, handler.APIResponse{
 			Success: false,
-			Message: "Failed to upload KTP file.",
+			Message: "Gagal upload foto Selfie.",
 		})
 		return
 	}
@@ -74,7 +74,7 @@ func (h *UserHandler) Create(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, handler.APIResponse{
 			Success: false,
-			Message: "Invalid tanggalLahir format, use YYYY-MM-DD",
+			Message: "Format tanggal lahir salah,harus YYYY-MM-DD",
 		})
 		return
 	}
@@ -83,7 +83,7 @@ func (h *UserHandler) Create(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, handler.APIResponse{
 			Success: false,
-			Message: "Invalid gaji format",
+			Message: "Format gaji salah",
 		})
 		return
 	}
@@ -91,6 +91,7 @@ func (h *UserHandler) Create(c *gin.Context) {
 
 	input := &entity.UserInput{
 		Nik: req.Nik,
+		Password: req.Password,
 		FullName: req.FullName,
 		LegalName: req.LegalName,
 		TempatLahir: req.TempatLahir,
@@ -110,6 +111,6 @@ func (h *UserHandler) Create(c *gin.Context) {
 	
 	c.JSON(http.StatusCreated, handler.APIResponse{
 		Success: true,
-		Message: "User created successfully",
+		Message: "Berhasil membuat user",
 	})
 }

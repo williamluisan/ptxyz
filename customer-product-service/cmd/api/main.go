@@ -10,8 +10,11 @@ import (
 	gormMysql "ptxyz/customer-product-service/internal/infrastructure/gorm/integration/mysql"
 	gormRepo "ptxyz/customer-product-service/internal/infrastructure/gorm/repository"
 
-	userHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/user"
+	authUsecase "ptxyz/customer-product-service/internal/usecase/auth"
 	userUsecase "ptxyz/customer-product-service/internal/usecase/user"
+
+	authHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/auth"
+	userHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/user"
 )
 
 func main() {
@@ -36,14 +39,17 @@ func main() {
 	dbUserRepo := gormRepo.New(db)
 
 	/* usecases */
+	authService := authUsecase.New(dbUserRepo)
 	userService := userUsecase.New(dbUserRepo)
 
 	/* transport handler */
+	authHandler := authHandler.New(authService)
 	userHandler := userHandler.New(userService)
 
 	/* transport dependencies */
 	deps := &transHttpGin.Dependencies{
 		UserHandler: userHandler,
+		AuthHandler: authHandler,
 	}
 
 	// router
