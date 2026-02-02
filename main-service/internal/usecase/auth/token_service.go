@@ -14,12 +14,11 @@ type TokenService struct {
 func NewTokenService(secret string, ttl time.Duration) *TokenService {
 	return &TokenService{
 		secret: []byte(secret),
-		ttl: ttl,
+		ttl: ttl * time.Second,
 	}
 }
 
 func (t *TokenService) Generate(userPublicId string) (string, error) {
-
 	claims := jwt.MapClaims{
 		"sub": userPublicId,
 		"exp": time.Now().Add(t.ttl).Unix(),

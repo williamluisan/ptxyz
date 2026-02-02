@@ -2,6 +2,7 @@ package gin
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/spf13/viper"
 
 	"ptxyz/main-service/internal/transport/http/gin/routes"
 
@@ -16,8 +17,11 @@ func NewRouter(deps *Dependencies) *gin.Engine{
 
 	api := r.Group("/api")
 
-	routes.RegisterRegisterRoutes(api, deps.RegisterHandler)
 	routes.RegisterAuthRoutes(api, deps.AuthHandler)
+	api.Use(middleware.JWT(viper.GetString("JWT_SECRET")))
+	{
+		routes.RegisterRegisterRoutes(api, deps.RegisterHandler)
+	}
 
 	return r
 }

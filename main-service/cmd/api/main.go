@@ -31,7 +31,7 @@ func main() {
 
 	/* transport handler */
 	authHandler := authHandler.NewAuthHandler(loginService)
-	registerHandler := registerHandler.NewRegisterProxyHandler("a")
+	registerHandler := registerHandler.NewRegisterProxyHandler(viper.GetString("CUSTOMER_PRODUCT_SERVICE_BASE_URL"))
 
 	/* transport dependencies */
 	deps := &transHttpGin.Dependencies{
