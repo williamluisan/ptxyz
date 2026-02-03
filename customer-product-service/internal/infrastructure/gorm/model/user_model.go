@@ -51,7 +51,7 @@ func (m *UserModel) FromEntity(u *entity.User) *UserModel {
 // reverse model to entity
 func (m *UserModel) ToEntity() *entity.User {
 	return &entity.User{
-		ID: m.ID,
+		// ID: m.ID,
 		PublicId: m.PublicId,
 		Nik: m.Nik,		
 		Password: m.Password,				

@@ -49,6 +49,8 @@ func NewUser(input *UserInput) *User {
 		TanggalLahir: input.TanggalLahir,	
 		Gaji: input.Gaji,			
 		FotoKtp: input.FotoKtp,		
-		FotoSelfie: input.FotoSelfie,		
+		FotoSelfie: input.FotoSelfie,
+		CreatedAt: time.Now(),
+		CreatedBy: 1,		
 	}
 }

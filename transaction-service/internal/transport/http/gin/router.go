@@ -7,9 +7,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
+	"github.com/spf13/viper"
 
-	middleware "ptxyz/customer-product-service/internal/transport/http/gin/middleware"
-	"ptxyz/customer-product-service/internal/transport/http/gin/routes"
+	middleware "ptxyz/transaction-service/internal/transport/http/gin/middleware"
+	"ptxyz/transaction-service/internal/transport/http/gin/routes"
 )
 
 func NewRouter(deps *Dependencies) *gin.Engine{
@@ -32,9 +33,10 @@ func NewRouter(deps *Dependencies) *gin.Engine{
 
 	api := r.Group("/api")
 
-	routes.RegisterUserRoutes(api, deps.UserHandler)
-	routes.RegisterAuthRoutes(api, deps.AuthHandler)
-	routes.RegisterProductRoutes(api, deps.ProductHandler)
+	api.Use(middleware.JWT(viper.GetString("JWT_SECRET"))) 
+	{
+		routes.RegisterOrderRoutes(api, deps.TransactionHandler)
+	}
 
 	return r
 }

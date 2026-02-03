@@ -6,9 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/spf13/viper"
 
-	"ptxyz/main-service/internal/transport/http/gin/handler"
+	"ptxyz/transaction-service/internal/transport/http/gin/handler"
 )
 
 type Claims struct {
@@ -17,8 +16,7 @@ type Claims struct {
 	Role         string
 }
 
-func JWT() gin.HandlerFunc {
-	secret := viper.GetString("JWT_SECRET")
+func JWT(secret string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		authHeader := c.GetHeader("Authorization")
 		if authHeader == "" {

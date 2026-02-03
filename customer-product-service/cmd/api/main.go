@@ -11,9 +11,11 @@ import (
 	gormRepo "ptxyz/customer-product-service/internal/infrastructure/gorm/repository"
 
 	authUsecase "ptxyz/customer-product-service/internal/usecase/auth"
+	productUsecase "ptxyz/customer-product-service/internal/usecase/product"
 	userUsecase "ptxyz/customer-product-service/internal/usecase/user"
 
 	authHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/auth"
+	productHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/product"
 	userHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/user"
 )
 
@@ -36,20 +38,24 @@ func main() {
 	}
 
 	/* infrastructure */
-	dbUserRepo := gormRepo.New(db)
+	dbUserRepo := gormRepo.NewUserRepository(db)
+	dbProductRepo := gormRepo.NewProdctRepository(db)
 
 	/* usecases */
 	authService := authUsecase.New(dbUserRepo)
 	userService := userUsecase.New(dbUserRepo)
+	productService := productUsecase.NewProductService(dbProductRepo)
 
 	/* transport handler */
 	authHandler := authHandler.New(authService)
 	userHandler := userHandler.New(userService)
+	productHandler := productHandler.NewProductHandler(productService)
 
 	/* transport dependencies */
 	deps := &transHttpGin.Dependencies{
 		UserHandler: userHandler,
 		AuthHandler: authHandler,
+		ProductHandler: productHandler,
 	}
 
 	// router
