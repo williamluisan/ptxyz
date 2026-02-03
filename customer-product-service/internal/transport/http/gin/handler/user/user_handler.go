@@ -103,8 +103,8 @@ func (h *UserHandler) Create(c *gin.Context) {
 
 	if err := h.userService.Create(c, input); err != nil {
 		c.JSON(http.StatusBadRequest, handler.APIResponse{
-				Success: false,
-				Message: err.Error(),
+			Success: false,
+			Message: err.Error(),
 		})
 		return
 	}

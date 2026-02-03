@@ -36,7 +36,7 @@ func main() {
 	}
 
 	/* infrastructure */
-	dbUserRepo := gormRepo.New(db)
+	dbUserRepo := gormRepo.NewUserRepository(db)
 
 	/* usecases */
 	authService := authUsecase.New(dbUserRepo)
