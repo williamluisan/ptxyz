@@ -1,7 +1,10 @@
 package main
 
 import (
+	"log"
+	"ptxyz/main-service/config"
 	transHttpGin "ptxyz/main-service/internal/transport/http/gin"
+	"time"
 
 	authHandler "ptxyz/main-service/internal/transport/http/gin/handler/auth"
 	authUsecase "ptxyz/main-service/internal/usecase/auth"
@@ -9,19 +12,26 @@ import (
 	internalService "ptxyz/main-service/internal/infrastructure/http/client"
 
 	registerHandler "ptxyz/main-service/internal/transport/http/gin/handler/register"
+
+	"github.com/spf13/viper"
 )
 
 func main() {
+	_, err := config.Load()
+	if err != nil {
+		log.Fatal(err)
+	}
+	
 	/* infrastructure */
-	customerProductServiceAuth := internalService.NewCustomerProductServiceAuth("http://localhost:8003/api")
+	customerProductServiceAuth := internalService.NewCustomerProductServiceAuth(viper.GetString("CUSTOMER_PRODUCT_SERVICE_BASE_URL"))
 
 	/* usecases */
-	tokenService := authUsecase.NewTokenService("", 100)
+	tokenService := authUsecase.NewTokenService(viper.GetString("JWT_SECRET"), time.Duration(viper.GetInt("JWT_TTL")))
 	loginService := authUsecase.NewLoginService(customerProductServiceAuth, tokenService)
 
 	/* transport handler */
 	authHandler := authHandler.NewAuthHandler(loginService)
-	registerHandler := registerHandler.NewRegisterProxyHandler("a")
+	registerHandler := registerHandler.NewRegisterProxyHandler(viper.GetString("CUSTOMER_PRODUCT_SERVICE_BASE_URL"))
 
 	/* transport dependencies */
 	deps := &transHttpGin.Dependencies{

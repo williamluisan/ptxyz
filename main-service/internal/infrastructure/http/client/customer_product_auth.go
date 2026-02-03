@@ -9,6 +9,8 @@ import (
 
 	entity "ptxyz/main-service/internal/domain/entity/auth"
 	repository "ptxyz/main-service/internal/domain/repository/auth"
+
+	"github.com/spf13/viper"
 )
 
 type customerProductClientImpl struct {
@@ -32,7 +34,7 @@ func (c *customerProductClientImpl) VerifyCredential(ctx context.Context, nik st
 	req, _ := http.NewRequestWithContext(
 		ctx,
 		http.MethodPost,
-		c.baseURL+"/auth/login",
+		c.baseURL + viper.GetString("CUSTOMER_PRODUCT_AUTH_LOGIN_EP"),
 		bytes.NewBuffer(body),
 	)
 	req.Header.Set("Content-Type", "application/json")
