@@ -2,8 +2,7 @@ package gin
 
 import (
 	"net/http"
-
-	"ptxyz/customer-product-service/internal/transport/http/gin/handler"
+	"ptxyz/main-service/internal/transport/http/gin/handler"
 
 	"github.com/gin-gonic/gin"
 )

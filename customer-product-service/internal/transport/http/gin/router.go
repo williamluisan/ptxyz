@@ -8,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
 
+	middleware "ptxyz/customer-product-service/internal/transport/http/gin/middleware"
 	"ptxyz/customer-product-service/internal/transport/http/gin/routes"
 )
 
@@ -27,7 +28,7 @@ func NewRouter(deps *Dependencies) *gin.Engine{
 	r := gin.Default()
 
 	// middleware (global)
-	r.Use(EmptyBodyRequest())
+	r.Use(middleware.EmptyBodyRequest())
 
 	api := r.Group("/api")
 
