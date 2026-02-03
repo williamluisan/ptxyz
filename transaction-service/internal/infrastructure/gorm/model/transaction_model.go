@@ -49,7 +49,7 @@ func (m *TransactionModel) FromEntity(e *entity.Transaction) *TransactionModel {
 // reverse model to entity
 func (m *TransactionModel) ToEntity() *entity.Transaction {
 	return &entity.Transaction{
-		ID: m.ID,
+		// ID: m.ID,
 		PublicId: m.PublicId,		
 		KonsumenTenorLimitPublicId: m.KonsumenTenorLimitPublicId,
 		ProductPublicId: m.ProductPublicId,

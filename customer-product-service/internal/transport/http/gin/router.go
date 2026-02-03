@@ -34,6 +34,7 @@ func NewRouter(deps *Dependencies) *gin.Engine{
 
 	routes.RegisterUserRoutes(api, deps.UserHandler)
 	routes.RegisterAuthRoutes(api, deps.AuthHandler)
+	routes.RegisterProductRoutes(api, deps.ProductHandler)
 
 	return r
 }
