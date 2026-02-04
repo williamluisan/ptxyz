@@ -11,10 +11,12 @@ import (
 	gormRepo "ptxyz/customer-product-service/internal/infrastructure/gorm/repository"
 
 	authUsecase "ptxyz/customer-product-service/internal/usecase/auth"
+	konsumenTenorLimitUsecase "ptxyz/customer-product-service/internal/usecase/konsumen_tenor_limit"
 	productUsecase "ptxyz/customer-product-service/internal/usecase/product"
 	userUsecase "ptxyz/customer-product-service/internal/usecase/user"
 
 	authHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/auth"
+	konsumenTenorLimitHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/konsumen_tenor_limit"
 	productHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/product"
 	userHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/user"
 )
@@ -40,22 +42,26 @@ func main() {
 	/* infrastructure */
 	dbUserRepo := gormRepo.NewUserRepository(db)
 	dbProductRepo := gormRepo.NewProdctRepository(db)
+	dbKonsumenTenorLimitRepo := gormRepo.NewKonsumenTenorLimitRepository(db)
 
 	/* usecases */
 	authService := authUsecase.New(dbUserRepo)
 	userService := userUsecase.New(dbUserRepo)
 	productService := productUsecase.NewProductService(dbProductRepo)
+	konsumenTenorLimitService := konsumenTenorLimitUsecase.NewKonsumenTenorLimitService(dbKonsumenTenorLimitRepo)
 
 	/* transport handler */
 	authHandler := authHandler.New(authService)
 	userHandler := userHandler.New(userService)
 	productHandler := productHandler.NewProductHandler(productService)
+	konsumenTenorLimitHandler := konsumenTenorLimitHandler.New(konsumenTenorLimitService)
 
 	/* transport dependencies */
 	deps := &transHttpGin.Dependencies{
 		UserHandler: userHandler,
 		AuthHandler: authHandler,
 		ProductHandler: productHandler,
+		KonsumenTenorLimitHandler: konsumenTenorLimitHandler,
 	}
 
 	// router

@@ -26,7 +26,7 @@ func NewTransactionService(repo repository.TransactionRepository) TransactionSer
 func (i *transactionServiceImpl) Create(ctx context.Context, input *entity.TransactionInput) error {
 	data := input
 
-	// check if konsumer tenor limit exists
+	// check if konsumen tenor limit exists
 	// ...
 
 	// check if product exists
