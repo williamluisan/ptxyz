@@ -40,9 +40,10 @@ func main() {
 	/* infrastructure */
 	dbTransactionRepo := gormRepo.NewTransactionRepository(db)
 	konsumenTenorLimitService := internalService.NewKonsumenTenorLimit(viper.GetString("CUSTOMER_PRODUCT_SERVICE_BASE_URL"))
+	productService := internalService.NewProduct(viper.GetString("CUSTOMER_PRODUCT_SERVICE_BASE_URL"))
 
 	/* usecases */
-	transactionService := transactionUsecase.NewTransactionService(dbTransactionRepo, konsumenTenorLimitService)
+	transactionService := transactionUsecase.NewTransactionService(dbTransactionRepo, konsumenTenorLimitService, productService)
 
 	/* transport handler */
 	transactionHandler := transactionHandler.NewTransactionHandler(transactionService)
