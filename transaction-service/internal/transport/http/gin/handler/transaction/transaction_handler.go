@@ -1,6 +1,7 @@
 package transaction
 
 import (
+	"context"
 	"net/http"
 	entity "ptxyz/transaction-service/internal/domain/entity/transaction"
 	"ptxyz/transaction-service/internal/transport/http/gin/handler"
@@ -21,6 +22,14 @@ func NewTransactionHandler(transactionService service.TransactionService) *Trans
 
 func (h *TransactionHandler) Create(c *gin.Context) {
 	var req CreateTransactionRequest
+
+	token := c.GetHeader("Authorization")
+
+	ctx := context.WithValue(
+		c.Request.Context(),
+		"authorization",
+		token,
+	)
 
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, handler.APIResponse{
@@ -45,7 +54,7 @@ func (h *TransactionHandler) Create(c *gin.Context) {
 		NamaAset: req.NamaAset,					
 	}
 
-	if err := h.transactionService.Create(c, input); err != nil {
+	if err := h.transactionService.Create(ctx, input); err != nil {
 		c.JSON(http.StatusBadRequest, handler.APIResponse{
 			Success: false,
 			Message: err.Error(),

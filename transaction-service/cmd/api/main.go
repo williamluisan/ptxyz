@@ -13,6 +13,10 @@ import (
 	transactionUsecase "ptxyz/transaction-service/internal/usecase/transaction"
 
 	transactionHandler "ptxyz/transaction-service/internal/transport/http/gin/handler/transaction"
+
+	internalService "ptxyz/transaction-service/internal/infrastructure/http/client"
+
+	"github.com/spf13/viper"
 )
 
 func main() {
@@ -35,9 +39,10 @@ func main() {
 
 	/* infrastructure */
 	dbTransactionRepo := gormRepo.NewTransactionRepository(db)
+	konsumenTenorLimitService := internalService.NewKonsumenTenorLimit(viper.GetString("CUSTOMER_PRODUCT_SERVICE_BASE_URL"))
 
 	/* usecases */
-	transactionService := transactionUsecase.NewTransactionService(dbTransactionRepo)
+	transactionService := transactionUsecase.NewTransactionService(dbTransactionRepo, konsumenTenorLimitService)
 
 	/* transport handler */
 	transactionHandler := transactionHandler.NewTransactionHandler(transactionService)

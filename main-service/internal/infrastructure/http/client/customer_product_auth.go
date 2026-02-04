@@ -27,7 +27,7 @@ func NewCustomerProductServiceAuth(baseURL string) repository.AuthRepository {
 
 func (c *customerProductClientImpl) VerifyCredential(ctx context.Context, nik string, password string) (*entity.AuthIdentity, error) {
 	body, _ := json.Marshal(map[string]string{
-		"nik":    nik,
+		"nik": nik,
 		"password": password,
 	})
 

@@ -17,6 +17,10 @@ type ProductModel struct {
 	UpdatedBy	int
 }
 
+func (ProductModel) TableName() string {
+	return "products"
+}
+
 // reverse model to entity
 func (m *ProductModel) ToEntity() *entity.Product {
 	return &entity.Product{
@@ -30,8 +34,4 @@ func (m *ProductModel) ToEntity() *entity.Product {
 		UpdatedAt: m.UpdatedAt,	
 		UpdatedBy: m.UpdatedBy,	
 	}
-}
-
-func (ProductModel) TableName() string {
-	return "products"
 }

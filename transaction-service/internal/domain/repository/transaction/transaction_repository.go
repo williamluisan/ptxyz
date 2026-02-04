@@ -8,3 +8,7 @@ import (
 type TransactionRepository interface {
 	Create(ctx context.Context, e *entity.Transaction) error
 }
+
+type TransactionRepositoryServiceRepository interface {
+	UpdateBalance(ctx context.Context, e *entity.TransactionInput) error
+}
