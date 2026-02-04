@@ -30,10 +30,11 @@ func (r *konsumenTenorLimitRepository) GetByPublicId(ctx context.Context, public
 }
 
 func (r *konsumenTenorLimitRepository) UpdateBalance(ctx context.Context, entity *entity.KTLUpdateBalance) error {
-	_, err := gorm.G[gormModel.KonsumenTenorLimitModel](r.db).Where("public_id = ?", "01J6B9ABCD5MZ9F3R2W7H1C4XP").
+	_, err := gorm.G[gormModel.KonsumenTenorLimitModel](r.db.Debug()).Where("public_id = ?", entity.PublicId).
 		Updates(ctx, gormModel.KonsumenTenorLimitModel{
-			UsedAmount: 111,
-			Balance: 222,
+			UsedAmount: entity.UsedAmount,
+			Balance: entity.Balance,
+			UpdatedBy: 1,
 		})
 
 	return err

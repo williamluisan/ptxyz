@@ -18,7 +18,7 @@ type KonsumenTenorLimit struct {
 
 // DTO
 type KTLUpdateBalance struct {
-	ID			uint64
+	PublicId	string
 	UsedAmount	float64
 	Balance 	float64
 	UpdatedBy	int

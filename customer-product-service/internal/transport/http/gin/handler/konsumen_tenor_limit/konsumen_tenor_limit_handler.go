@@ -68,6 +68,7 @@ func (h *KonsumenTenorLimitHandler) UpdateBalance(c *gin.Context) {
 	}
 
 	update := &entity.KTLUpdateBalance{
+		PublicId: req.PublicId,
 		UsedAmount: req.UsedAmount,
 		Balance: req.Balance,
 		UpdatedBy: 1,
