@@ -11,6 +11,7 @@ import (
 
 	internalService "ptxyz/main-service/internal/infrastructure/http/client"
 
+	productHandler "ptxyz/main-service/internal/transport/http/gin/handler/product"
 	registerHandler "ptxyz/main-service/internal/transport/http/gin/handler/register"
 
 	"github.com/spf13/viper"
@@ -32,11 +33,13 @@ func main() {
 	/* transport handler */
 	authHandler := authHandler.NewAuthHandler(loginService)
 	registerHandler := registerHandler.NewRegisterProxyHandler(viper.GetString("CUSTOMER_PRODUCT_SERVICE_BASE_URL"))
+	productHandler := productHandler.NewProductProxyHandler()
 
 	/* transport dependencies */
 	deps := &transHttpGin.Dependencies{
 		RegisterHandler: registerHandler,
 		AuthHandler: authHandler,
+		ProductHandler: productHandler,
 	}
 
 	// router
