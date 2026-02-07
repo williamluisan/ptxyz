@@ -19,6 +19,7 @@ func NewRouter(deps *Dependencies) *gin.Engine{
 	routes.RegisterAuthRoutes(api, deps.AuthHandler)
 	routes.RegisterRegisterRoutes(api, deps.RegisterHandler)
 	routes.RegisterProductRoutes(api, deps.ProductHandler)
+	routes.RegisterKonsumerTenorLimitReoutes(api, deps.KonsumenTenorLimitHandler)
 
 	return r
 }

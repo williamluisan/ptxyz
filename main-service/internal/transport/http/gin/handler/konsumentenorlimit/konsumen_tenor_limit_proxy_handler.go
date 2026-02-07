@@ -1,4 +1,4 @@
-package handler
+package konsumentenorlimit
 
 import (
 	"fmt"
@@ -11,13 +11,13 @@ import (
 	"github.com/spf13/viper"
 )
 
-type ProductProxyHandler struct {
+type KonsumenTenorLimitProxyHandler struct {
 	baseURL string
 	httpClient	*http.Client
 }
 
-func NewProductProxyHandler() *ProductProxyHandler{
-	return &ProductProxyHandler{
+func NewKonsumenTenorLimitProxyHandler() *KonsumenTenorLimitProxyHandler {
+	return &KonsumenTenorLimitProxyHandler{
 		baseURL: viper.GetString("CUSTOMER_PRODUCT_SERVICE_BASE_URL"),
 		httpClient: &http.Client{
 			Timeout: 30 * time.Second,
@@ -25,11 +25,11 @@ func NewProductProxyHandler() *ProductProxyHandler{
 	}
 }
 
-func (h *ProductProxyHandler) GetProductByPublicId(c *gin.Context) {
+func (h *KonsumenTenorLimitProxyHandler) GetKTLByPublicId(c *gin.Context) {
 	url := fmt.Sprintf(
 		"%s%s/%s",
 		h.baseURL,
-		viper.GetString("CUSTOMER_PRODUCT_PRODUCT_EP"),
+		viper.GetString("CUSTOMER_PRODUCT_KONSUMEN_TENOR_LIMIT_EP"),
 		c.Param("public_id"),
 	)
 
@@ -52,7 +52,7 @@ func (h *ProductProxyHandler) GetProductByPublicId(c *gin.Context) {
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusBadGateway, handler.APIResponse{
 			Success: false,
-			Message: "product service unavailable",
+			Message: "konsumer tenor limit service unavailable",
 		})
 		return
 	}
