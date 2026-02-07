@@ -27,7 +27,6 @@ func ParseValidationError(err error) map[string]string {
 
 	if ve, ok := err.(validator.ValidationErrors); ok {
 		for _, fe := range ve {
-			fmt.Println(fe.Field())
 			field := strings.ToLower(fe.Field())
 
 			switch fe.Tag() {
