@@ -2,8 +2,8 @@ package konsumentenorlimit
 
 import (
 	"context"
-	entity "ptxyz/customer-product-service/internal/domain/entity/konsumen_tenor_limit"
-	repository "ptxyz/customer-product-service/internal/domain/repository/konsumen_tenor_limit"
+	entity "ptxyz/customer-product-service/internal/domain/entity/konsumentenorlimit"
+	repository "ptxyz/customer-product-service/internal/domain/repository/konsumentenorlimit"
 )
 
 type KonsumenTenorLimitService interface {

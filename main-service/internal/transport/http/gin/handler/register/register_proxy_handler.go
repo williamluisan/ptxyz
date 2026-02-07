@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 	"time"
@@ -26,7 +25,7 @@ func NewRegisterProxyHandler(registerServiceBaseURL string) *RegisterProxyHandle
 
 func (h *RegisterProxyHandler) Register(c *gin.Context) {
 	targetURL := h.registerServiceBaseURL + viper.GetString("CUSTOMER_PRODUCT_REGISTER_EP")
-fmt.Println(targetURL)
+
 	req, err := http.NewRequest(
 		c.Request.Method,
 		targetURL,

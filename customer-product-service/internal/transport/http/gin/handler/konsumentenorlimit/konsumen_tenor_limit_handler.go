@@ -3,9 +3,9 @@ package konsumentenorlimit
 import (
 	"fmt"
 	"net/http"
-	entity "ptxyz/customer-product-service/internal/domain/entity/konsumen_tenor_limit"
+	entity "ptxyz/customer-product-service/internal/domain/entity/konsumentenorlimit"
 	"ptxyz/customer-product-service/internal/transport/http/gin/handler"
-	service "ptxyz/customer-product-service/internal/usecase/konsumen_tenor_limit"
+	service "ptxyz/customer-product-service/internal/usecase/konsumentenorlimit"
 
 	"github.com/gin-gonic/gin"
 	"github.com/oklog/ulid/v2"

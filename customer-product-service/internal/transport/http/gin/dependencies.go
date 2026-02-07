@@ -2,7 +2,7 @@ package gin
 
 import (
 	authHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/auth"
-	konsumenTenorLimit "ptxyz/customer-product-service/internal/transport/http/gin/handler/konsumen_tenor_limit"
+	konsumenTenorLimit "ptxyz/customer-product-service/internal/transport/http/gin/handler/konsumentenorlimit"
 	productHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/product"
 	userHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/user"
 )	

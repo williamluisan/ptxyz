@@ -1,7 +1,7 @@
 package model
 
 import (
-	entity "ptxyz/customer-product-service/internal/domain/entity/konsumen_tenor_limit"
+	entity "ptxyz/customer-product-service/internal/domain/entity/konsumentenorlimit"
 	"time"
 )
 
