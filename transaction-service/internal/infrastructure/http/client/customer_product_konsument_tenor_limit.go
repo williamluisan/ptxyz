@@ -6,8 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
-	entityKTL "ptxyz/transaction-service/internal/domain/entity/konsumen_tenor_limit"
-	repositoryKTL "ptxyz/transaction-service/internal/domain/repository/konsumen_tenor_limit"
+	entityKTL "ptxyz/transaction-service/internal/domain/entity/konsumentenorlimit"
+	repositoryKTL "ptxyz/transaction-service/internal/domain/repository/konsumentenorlimit"
 
 	"github.com/spf13/viper"
 )

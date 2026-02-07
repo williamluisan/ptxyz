@@ -11,12 +11,12 @@ import (
 	gormRepo "ptxyz/customer-product-service/internal/infrastructure/gorm/repository"
 
 	authUsecase "ptxyz/customer-product-service/internal/usecase/auth"
-	konsumenTenorLimitUsecase "ptxyz/customer-product-service/internal/usecase/konsumen_tenor_limit"
+	konsumenTenorLimitUsecase "ptxyz/customer-product-service/internal/usecase/konsumentenorlimit"
 	productUsecase "ptxyz/customer-product-service/internal/usecase/product"
 	userUsecase "ptxyz/customer-product-service/internal/usecase/user"
 
 	authHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/auth"
-	konsumenTenorLimitHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/konsumen_tenor_limit"
+	konsumenTenorLimitHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/konsumentenorlimit"
 	productHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/product"
 	userHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/user"
 )

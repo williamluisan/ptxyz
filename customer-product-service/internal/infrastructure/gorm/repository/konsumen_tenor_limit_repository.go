@@ -5,8 +5,8 @@ import (
 
 	"gorm.io/gorm"
 
-	entity "ptxyz/customer-product-service/internal/domain/entity/konsumen_tenor_limit"
-	repository "ptxyz/customer-product-service/internal/domain/repository/konsumen_tenor_limit"
+	entity "ptxyz/customer-product-service/internal/domain/entity/konsumentenorlimit"
+	repository "ptxyz/customer-product-service/internal/domain/repository/konsumentenorlimit"
 	gormModel "ptxyz/customer-product-service/internal/infrastructure/gorm/model"
 )
 

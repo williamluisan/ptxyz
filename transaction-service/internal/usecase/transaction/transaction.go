@@ -3,9 +3,9 @@ package transaction
 import (
 	"context"
 	"errors"
-	entityKTL "ptxyz/transaction-service/internal/domain/entity/konsumen_tenor_limit"
+	entityKTL "ptxyz/transaction-service/internal/domain/entity/konsumentenorlimit"
 	entity "ptxyz/transaction-service/internal/domain/entity/transaction"
-	repositoryKTL "ptxyz/transaction-service/internal/domain/repository/konsumen_tenor_limit"
+	repositoryKTL "ptxyz/transaction-service/internal/domain/repository/konsumentenorlimit"
 	repositoryProduct "ptxyz/transaction-service/internal/domain/repository/product"
 	repository "ptxyz/transaction-service/internal/domain/repository/transaction"
 	"strconv"

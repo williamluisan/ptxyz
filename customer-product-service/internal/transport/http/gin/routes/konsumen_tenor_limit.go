@@ -1,7 +1,7 @@
 package routes
 
 import (
-	konsumenTenorLimitHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/konsumen_tenor_limit"
+	konsumenTenorLimitHandler "ptxyz/customer-product-service/internal/transport/http/gin/handler/konsumentenorlimit"
 
 	"github.com/gin-gonic/gin"
 )

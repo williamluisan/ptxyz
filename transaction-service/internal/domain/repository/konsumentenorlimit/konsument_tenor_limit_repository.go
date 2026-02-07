@@ -2,7 +2,7 @@ package konsumentenorlimit
 
 import (
 	"context"
-	entity "ptxyz/transaction-service/internal/domain/entity/konsumen_tenor_limit"
+	entity "ptxyz/transaction-service/internal/domain/entity/konsumentenorlimit"
 )
 
 type KonsumenTenorLimitRepository interface {
