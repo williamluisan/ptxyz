@@ -7,8 +7,8 @@ import (
 )
 
 func RegisterKonsumerTenorLimitReoutes(rg *gin.RouterGroup, ktlProxyHandler *handler.KonsumenTenorLimitProxyHandler) {
-	user := rg.Group("/konsumentenorlimit")
+	ktl := rg.Group("/konsumentenorlimit")
 	{
-		user.GET("/:public_id", ktlProxyHandler.GetKTLByPublicId)
+		ktl.GET("/:public_id", ktlProxyHandler.GetKTLByPublicId)
 	}
 }
