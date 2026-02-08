@@ -7,5 +7,8 @@ import (
 )
 
 func RegisterProductRoutes(rg *gin.RouterGroup, productHandler *handler.ProductProxyHandler) {
-	rg.GET("/product/:public_id", productHandler.GetProductByPublicId)
+	product := rg.Group("/product")
+	{
+		product.GET("/:public_id", productHandler.GetProductByPublicId)
+	}
 }

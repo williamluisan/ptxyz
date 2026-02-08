@@ -7,8 +7,8 @@ import (
 )
 
 func RegisterOrderRoutes(rg *gin.RouterGroup, h *handler.TransactionHandler) {
-	order := rg.Group("/transaction")
+	transaction := rg.Group("/transaction")
 	{
-		order.POST("/", h.Create)
+		transaction.POST("/", h.Create)
 	}
 }
