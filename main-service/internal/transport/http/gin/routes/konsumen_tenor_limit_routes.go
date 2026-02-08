@@ -10,5 +10,6 @@ func RegisterKonsumerTenorLimitReoutes(rg *gin.RouterGroup, ktlProxyHandler *han
 	ktl := rg.Group("/konsumentenorlimit")
 	{
 		ktl.GET("/:public_id", ktlProxyHandler.GetKTLByPublicId)
+		ktl.PUT("/updateBalance", ktlProxyHandler.UpdateBalance)
 	}
 }

@@ -42,7 +42,6 @@ func (h *TransactionProxyHandler) Create(c *gin.Context) {
 		return
 	}
 
-
 	req, err := http.NewRequestWithContext(
 		c.Request.Context(),
 		http.MethodPost,
